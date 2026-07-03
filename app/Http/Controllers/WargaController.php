@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class WargaController extends Controller
-{
+{ 
     // 1. Tampilkan Halaman Utama Tabel Warga (Dashboard Petugas)
     public function index()
     {
@@ -16,6 +16,30 @@ class WargaController extends Controller
             'warga' => $warga
         ]);
     }
+
+    // Dashboard Petugas
+public function dashboard()
+{
+    $totalWarga = DB::table('warga')->count();
+
+    $penerimaAktif = DB::table('bantuan_warga')->count();
+
+    $butuhVerifikasi = DB::table('bantuan_warga')
+        ->where('status_penyaluran', 'Proses')
+        ->count();
+
+    $sudahDisalurkan = DB::table('bantuan_warga')
+        ->where('status_penyaluran', 'Sudah Disalurkan')
+        ->count();
+
+    return view('dashboard', [
+        'title' => 'Dashboard',
+        'totalWarga' => $totalWarga,
+        'penerimaAktif' => $penerimaAktif,
+        'butuhVerifikasi' => $butuhVerifikasi,
+        'sudahDisalurkan' => $sudahDisalurkan
+    ]);
+}
 
     // 2. Tampilkan Form Tambah Warga Baru
     public function create()
@@ -94,18 +118,22 @@ class WargaController extends Controller
     }
 
     // 4. Tampilkan Form Edit Warga
-    public function edit($nik)
-    {
-        $item = DB::table('warga')->where('nik', $nik)->first();
-        if (!$item) {
-            return redirect('/warga')->with('error', 'Data tidak ditemukan.');
-        }
-        return view('warga_edit', [
-            'title' => 'Edit Data Kependudukan',
-            'item' => $item
-        ]);
+   // 4. Tampilkan Form Edit Warga
+public function edit($nik)
+{
+    $warga = DB::table('warga')
+        ->where('nik', $nik)
+        ->first();
+
+    if (!$warga) {
+        return redirect('/warga')->with('error', 'Data tidak ditemukan.');
     }
 
+    return view('warga_edit', [
+        'title' => 'Edit Data Kependudukan',
+        'warga' => $warga
+    ]);
+}
     // 5. Update Data Warga ke Database
     public function update(Request $request, $nik)
     {
