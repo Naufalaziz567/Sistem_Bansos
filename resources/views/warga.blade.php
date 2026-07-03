@@ -8,12 +8,12 @@
                 <p class="text-gray-400 text-sm mt-1">Kelola data warga untuk validasi bantuan sosial.</p>
             </div>
             <div>
-                <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-blue-500/20 transition duration-150 flex items-center space-x-2">
+                <a href="{{ route('warga.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-blue-500/20 transition duration-150 flex items-center space-x-2 inline-block">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
                     <span>Tambah Warga Baru</span>
-                </button>
+                </a>
             </div>
         </div>
 
@@ -58,8 +58,14 @@
                                 </td>
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex items-center justify-center space-x-2">
-                                        <button class="px-3 py-1.5 bg-amber-600/20 hover:bg-amber-600 text-amber-400 hover:text-white rounded-lg text-xs font-semibold transition">Edit</button>
-                                        <button class="px-3 py-1.5 bg-red-600/20 hover:bg-red-600 text-red-400 hover:text-white rounded-lg text-xs font-semibold transition">Hapus</button>
+                                        <a href="{{ route('warga.edit', $item->nik) }}" class="px-3 py-1.5 bg-amber-600/20 hover:bg-amber-600 text-amber-400 hover:text-white rounded-lg text-xs font-semibold transition inline-block">Edit</a>
+                                        
+                                        <form action="{{ route('warga.destroy', $item->nik) }}" method="POST" id="delete-form-{{ $item->nik }}" class="inline">
+                                            @csrf
+                                            <button type="button" onclick="confirmDelete('{{ $item->nik }}', '{{ $item->nama_lengkap }}')" class="px-3 py-1.5 bg-red-600/20 hover:bg-red-600 text-red-400 hover:text-white rounded-lg text-xs font-semibold transition">
+                                                Hapus
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
@@ -75,4 +81,40 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // 1. Alert Pop-up ketika BERHASIL (Tambah/Edit/Hapus)
+        @if(session('success'))
+            Swal.fire({
+                title: 'Berhasil!',
+                text: "{{ session('success') }}",
+                icon: 'success',
+                background: '#1f2937',     /* Tema gelap menyesuaikan bg-gray-800 */
+                color: '#fff',
+                confirmButtonColor: '#2563eb', /* Warna Biru Tailwind (blue-600) */
+                confirmButtonText: 'Oke, Mantap!'
+            });
+        @endif
+
+        // 2. Alert Pop-up Konfirmasi Interaktif Sebelum DATA DIHAPUS
+        function confirmDelete(nik, nama) {
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Data warga bernama " + nama + " (NIK: " + nik + ") akan dihapus permanen dari sistem!",
+                icon: 'warning',
+                showCancelButton: true,
+                background: '#1f2937',
+                color: '#fff',
+                confirmButtonColor: '#dc2626', /* Merah (red-600) */
+                cancelButtonColor: '#4b5563',  /* Abu-abu (gray-600) */
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Eksekusi submit form jika user menekan tombol merah "Ya, Hapus!"
+                    document.getElementById('delete-form-' + nik).submit();
+                }
+            });
+        }
+    </script>
 </x-layout>

@@ -6,40 +6,46 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\WargaController;
 
 // ==========================================
+// RUTE PUBLIK (Bisa Diakses Warga Tanpa Login)
+// ==========================================
+
+// Halaman utama sekarang dialihkan untuk Cek Bansos Mandiri via Web
+Route::get('/', [WargaController::class, 'cekBansosMandiri'])->name('cek.bansos');
+Route::post('/cek-status', [WargaController::class, 'prosesCekBansos'])->name('cek.proses');
+
+
+// ==========================================
 // RUTE AUTHENTICATION (Login, Register, Logout)
 // ==========================================
 
-// Dua rute ini sama-sama nampilin form login (Aman dari error GET /login)
-Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
-Route::get('/login', [LoginController::class, 'showLoginForm']);
+// Menampilkan Form Login (Dipindah ke /login agar tidak bentrok dengan cek mandiri)
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
 // Menampilkan Form Register
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 
-// Memproses Aksi Form (Method POST)
+// Memproses Aksi Form Auth (Method POST)
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 // ==========================================
-// RUTE KONTEN APLIKASI (Setelah Berhasil Login)
+// RUTE KONTEN APLIKASI PETUGAS (Setelah Berhasil Login)
 // ==========================================
 
-// Dashboard Utama
+// 1. Dashboard Utama Petugas
 Route::get('/dashboard', function () {
     return view('dashboard', ['title' => 'Dashboard']);
 })->name('dashboard');
 
-// Manajemen Data Kependudukan Warga (Memanggil Controller Resmi)
-Route::get('/warga', [WargaController::class, 'index'])->name('warga');
+// 2. Manajemen Data Kependudukan Warga (CRUD Lengkap)
+Route::get('/warga', [WargaController::class, 'index'])->name('warga.index');
+Route::get('/warga/create', [WargaController::class, 'create'])->name('warga.create');
+Route::post('/warga/store', [WargaController::class, 'store'])->name('warga.store');
+Route::get('/warga/{nik}/edit', [WargaController::class, 'edit'])->name('warga.edit');
+Route::post('/warga/{nik}/update', [WargaController::class, 'update'])->name('warga.update');
+Route::post('/warga/{nik}/delete', [WargaController::class, 'destroy'])->name('warga.destroy');
 
-// Laporan Bulanan
-Route::get('/reports', function () {
-    return view('reports', ['title' => 'Reports Page']);
-});
-
-// Welcome Page bawaan
-Route::get('/welcome', function () {
-    return view('welcome', ['title' => 'Welcome Page']);
-});
+// 3. Monitoring & Laporan Realisasi Penyaluran Bansos (Memanggil Controller)
+Route::get('/reports', [WargaController::class, 'reportIndex'])->name('reports.index');
