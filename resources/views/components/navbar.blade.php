@@ -52,7 +52,7 @@
             <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
                 <x-nav-link href="/dashboard" :active="request()->is('dashboard')">Dashboard</x-nav-link>
                 <x-nav-link href="/warga" :active="request()->is('warga')">Data Warga</x-nav-link>
-                <x-nav-link href="/reports" :active="request()->is('reports')">Reports</x-nav-link>
+                <x-nav-link href="/reports" :active="request()->is('reports')">Laporan</x-nav-link>
             </div>
             <div class="border-t border-white/10 pt-4 pb-3">
                 <div class="flex items-center px-5">
@@ -61,7 +61,7 @@
                     </div>
                     <div class="ml-3">
                         <div class="text-base/5 font-medium text-white">{{ session('nama', 'Petugas') }}</div>
-                        <div class="text-sm font-medium text-gray-400">Petugas Desa Nek Nang</div>
+                        <div class="text-sm font-medium text-gray-400">Petugas Desa</div>
                     </div>
                     <button type="button" class="relative ml-auto shrink-0 rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
                         <span class="absolute -inset-1.5"></span>
