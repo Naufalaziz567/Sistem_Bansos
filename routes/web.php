@@ -35,9 +35,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 // ==========================================
 
 // 1. Dashboard Utama Petugas
-Route::get('/dashboard', function () {
-    return view('dashboard', ['title' => 'Dashboard']);
-})->name('dashboard');
+Route::get('/dashboard', [WargaController::class, 'dashboard'])->name('dashboard');
 
 // 2. Manajemen Data Kependudukan Warga (CRUD Lengkap)
 Route::get('/warga', [WargaController::class, 'index'])->name('warga.index');
@@ -47,5 +45,10 @@ Route::get('/warga/{nik}/edit', [WargaController::class, 'edit'])->name('warga.e
 Route::post('/warga/{nik}/update', [WargaController::class, 'update'])->name('warga.update');
 Route::post('/warga/{nik}/delete', [WargaController::class, 'destroy'])->name('warga.destroy');
 
-// 3. Monitoring & Laporan Realisasi Penyaluran Bansos (Memanggil Controller)
+// 3. Monitoring & Laporan Realisasi Penyaluran Bansos
 Route::get('/reports', [WargaController::class, 'reportIndex'])->name('reports.index');
+
+
+// 4. Update status bansos (tandai sudah disalurkan)
+Route::post('/bansos/{nik}/salur', [WargaController::class, 'markSalur'])
+    ->name('bansos.salur');

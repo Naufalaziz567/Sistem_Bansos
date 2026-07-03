@@ -29,7 +29,7 @@
                 </div>
                 <div>
                     <p class="text-sm font-medium text-gray-500">Total Data Warga</p>
-                    <h4 class="text-2xl font-bold text-gray-900 mt-1">1,245</h4>
+                    <h4 class="text-2xl font-bold text-gray-900 mt-1">{{ $totalWarga }}</h4>
                 </div>
             </div>
 
@@ -41,7 +41,10 @@
                 </div>
                 <div>
                     <p class="text-sm font-medium text-gray-500">Penerima Aktif</p>
-                    <h4 class="text-2xl font-bold text-gray-900 mt-1">432 <span class="text-xs text-gray-400 font-normal">KK</span></h4>
+                    <h4 class="text-2xl font-bold text-gray-900 mt-1">
+    {{ $penerimaAktif }}
+    <span class="text-xs text-gray-400 font-normal">KK</span>
+</h4>
                 </div>
             </div>
 
@@ -53,7 +56,9 @@
                 </div>
                 <div>
                     <p class="text-sm font-medium text-gray-500">Dana Tersalurkan</p>
-                    <h4 class="text-xl font-bold text-gray-900 mt-1">Rp 128.5M</h4>
+                    <h4 class="text-xl font-bold text-gray-900 mt-1">
+    {{ $sudahDisalurkan }} Bantuan
+</h4>
                 </div>
             </div>
 
@@ -65,7 +70,10 @@
                 </div>
                 <div>
                     <p class="text-sm font-medium text-gray-500">Butuh Verifikasi</p>
-                    <h4 class="text-2xl font-bold text-gray-900 mt-1">18 <span class="text-xs text-amber-500 font-normal">Baru</span></h4>
+                    <h4 class="text-2xl font-bold text-gray-900 mt-1">
+    {{ $butuhVerifikasi }}
+    <span class="text-xs text-amber-500 font-normal">Baru</span>
+</h4>
                 </div>
             </div>
         </div>
@@ -76,9 +84,35 @@
                     <h4 class="text-lg font-bold text-gray-900">Tren Realisasi Bansos (2026)</h4>
                     <span class="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-lg">Pembaruan Otomatis</span>
                 </div>
-                <div class="h-64 bg-gray-50 rounded-xl border border-dashed border-gray-200 flex items-center justify-center text-gray-400">
-                    <p>[ Area Grafik Penyaluran Bulanan ]</p>
-                </div>
+               <div class="h-64 bg-gray-50 rounded-xl p-6">
+    <div class="space-y-4">
+
+        <div>   
+            <p class="text-sm font-medium">Total Warga</p>
+            <div class="w-full bg-gray-200 rounded-full h-4">
+                <div class="bg-blue-600 h-4 rounded-full" style="width:100%"></div>
+            </div>
+            <p class="text-sm mt-1">{{ $totalWarga }} Orang</p>
+        </div>
+
+        <div>
+            <p class="text-sm font-medium">Penerima Aktif</p>
+            <div class="w-full bg-gray-200 rounded-full h-4">
+                <div class="bg-green-600 h-4 rounded-full" style="width:80%"></div>
+            </div>
+            <p class="text-sm mt-1">{{ $penerimaAktif }} KK</p>
+        </div>
+
+        <div>
+            <p class="text-sm font-medium">Sudah Disalurkan</p>
+            <div class="w-full bg-gray-200 rounded-full h-4">
+                <div class="bg-indigo-600 h-4 rounded-full" style="width:60%"></div>
+            </div>
+            <p class="text-sm mt-1">{{ $sudahDisalurkan }} Bantuan</p>
+        </div>
+
+    </div>
+</div>
             </div>
 
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">

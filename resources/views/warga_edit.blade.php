@@ -9,11 +9,19 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-gray-600 text-xs font-semibold uppercase mb-1">NIK (Tidak Bisa Diubah)</label>
-                    <input type="text" value="{{ $warga->nik }}" disabled class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-xl text-gray-400 text-sm outline-none cursor-not-allowed">
+                    <input type="text"
+       name="nik"
+       value="{{ $warga->nik }}"
+       readonly
+       class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-xl text-gray-400 text-sm outline-none">
                 </div>
                 <div>
                     <label class="block text-gray-600 text-xs font-semibold uppercase mb-1">No KK (Tidak Bisa Diubah)</label>
-                    <input type="text" value="{{ $warga->no_kk }}" disabled class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-xl text-gray-400 text-sm outline-none cursor-not-allowed">
+                    <input type="text"
+       name="no_kk"
+       value="{{ $warga->no_kk }}"
+       readonly
+       class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-xl text-gray-400 text-sm outline-none">
                 </div>
             </div>
             <div>
