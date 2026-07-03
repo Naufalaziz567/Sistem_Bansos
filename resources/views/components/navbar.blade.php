@@ -10,7 +10,7 @@
                         <div class="ml-10 flex items-baseline space-x-4">
                             <x-nav-link href="/dashboard" :active="request()->is('dashboard')">Dashboard</x-nav-link>
                             <x-nav-link href="/warga" :active="request()->is('warga')">Data Warga</x-nav-link>
-                            <x-nav-link href="/reports" :active="request()->is('reports')">Reports</x-nav-link>
+                            <x-nav-link href="/reports" :active="request()->is('reports')">Laporan</x-nav-link>
                         </div>
                     </div>
                 </div>
