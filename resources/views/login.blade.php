@@ -10,7 +10,7 @@
 
     <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 space-y-6">
         <div class="text-center">
-            <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">Selamat Datang</h2>
+            <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">HAIII Selamat Datang</h2>
             <p class="text-lg font-semibold text-blue-600 mt-1">masyarakat sejahtera</p>
             <p class="text-sm text-gray-500 mt-1">Silakan masuk ke akun petugas Anda</p>
         </div>
