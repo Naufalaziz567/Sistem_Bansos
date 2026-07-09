@@ -126,9 +126,6 @@
                         <span class="text-sm font-medium">Buat Laporan Bulanan</span>
                         <span class="text-gray-400 group-hover:text-blue-500">&rarr;</span>
                     </a>
-                    <div class="p-4 bg-amber-50 rounded-xl border border-amber-100 text-xs text-amber-800">
-                        <strong>Pemberitahuan:</strong> Pastikan sinkronisasi NIK warga selesai sebelum tanggal 5 bulan depan ya, Bro!
-                    </div>
                 </div>
             </div>
         </div>

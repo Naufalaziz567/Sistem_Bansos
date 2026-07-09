@@ -17,13 +17,6 @@
             </div>
         </div>
 
-        <div class="bg-gray-800 p-4 rounded-2xl border border-gray-700 flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div class="w-full md:w-72">
-                <input type="text" placeholder="Cari berdasarkan NIK / Nama..." 
-                    class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
-        </div>
-
         <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden shadow-xl">
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
@@ -116,5 +109,6 @@
                 }
             });
         }
+
     </script>
 </x-layout>

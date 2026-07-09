@@ -54,13 +54,6 @@
                 </div>
             </div>
 
-            <div class="flex items-center justify-between text-sm">
-                <label class="flex items-center space-x-2 text-gray-600">
-                    <input type="checkbox" name="remember" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                    <span>Ingat Saya</span>
-                </label>
-            </div>
-
             <button type="submit" 
                 class="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg shadow-blue-500/20 transition duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                 Masuk ke Dashboard
