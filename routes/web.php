@@ -50,8 +50,3 @@ Route::post('/warga/{nik}/delete', [WargaController::class, 'destroy'])->name('w
 // 3. Monitoring & Laporan Realisasi Penyaluran Bansos
 Route::get('/reports', [LaporanController::class, 'reportView'])->name('reports.view');
 Route::put('/reports/update/{id}', [LaporanController::class, 'updateStatus'])->name('reports.update');
-
-
-// 4. Update status bansos (tandai sudah disalurkan)
-Route::post('/bansos/{nik}/salur', [WargaController::class, 'markSalur'])
-    ->name('bansos.salur');
