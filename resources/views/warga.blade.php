@@ -12,8 +12,7 @@
                 <span>Tambah Warga Baru</span>
             </a>
         </div>
-
-        <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden shadow-xl">
+        
         <div class="relative">
             <input type="text" placeholder="Cari berdasarkan NIK atau Nama..." 
                 class="w-full pl-12 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-2xl text-white text-sm focus:ring-2 focus:ring-blue-500 outline-none transition">
