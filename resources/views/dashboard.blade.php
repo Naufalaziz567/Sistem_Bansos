@@ -69,12 +69,6 @@
                         <span class="text-sm font-medium text-gray-700">Laporan Bulanan</span>
                         <span class="text-gray-400 group-hover:text-blue-600">&rarr;</span>
                     </a>
-<<<<<<< Updated upstream
-=======
-                    <div class="p-4 bg-amber-50 rounded-xl border border-amber-100 text-xs text-amber-800">
-                        <strong>Pemberitahuan:</strong> Sinkronisasi NIK wajib selesai sebelum tanggal 5!
-                    </div>
->>>>>>> Stashed changes
                 </div>
             </div>
         </div>
