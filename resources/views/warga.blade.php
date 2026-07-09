@@ -13,9 +13,7 @@
             </a>
         </div>
 
-<<<<<<< Updated upstream
         <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden shadow-xl">
-=======
         <div class="relative">
             <input type="text" placeholder="Cari berdasarkan NIK atau Nama..." 
                 class="w-full pl-12 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-2xl text-white text-sm focus:ring-2 focus:ring-blue-500 outline-none transition">
@@ -23,7 +21,6 @@
         </div>
 
         <div class="bg-gray-800 rounded-3xl border border-gray-700 overflow-hidden shadow-2xl">
->>>>>>> Stashed changes
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
@@ -98,6 +95,27 @@
                 confirmButtonText: 'Ya, Hapus!'
             }).then((result) => {
                 if (result.isConfirmed) document.getElementById('delete-form-' + nik).submit();
+            });
+        }
+
+        // 2. Alert Pop-up Konfirmasi Interaktif Sebelum DATA DIHAPUS
+        function confirmDelete(nik, nama) {
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Data warga bernama " + nama + " (NIK: " + nik + ") akan dihapus permanen dari sistem!",
+                icon: 'warning',
+                showCancelButton: true,
+                background: '#1f2937',
+                color: '#fff',
+                confirmButtonColor: '#dc2626', /* Merah (red-600) */
+                cancelButtonColor: '#4b5563',  /* Abu-abu (gray-600) */
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Eksekusi submit form jika user menekan tombol merah "Ya, Hapus!"
+                    document.getElementById('delete-form-' + nik).submit();
+                }
             });
         }
 
