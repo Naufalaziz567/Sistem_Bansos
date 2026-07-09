@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\WargaController;
+use App\Http\Controllers\LaporanController;
+
 
 // ==========================================
 // RUTE PUBLIK (Bisa Diakses Warga Tanpa Login)
@@ -46,7 +48,8 @@ Route::post('/warga/{nik}/update', [WargaController::class, 'update'])->name('wa
 Route::post('/warga/{nik}/delete', [WargaController::class, 'destroy'])->name('warga.destroy');
 
 // 3. Monitoring & Laporan Realisasi Penyaluran Bansos
-Route::get('/reports', [WargaController::class, 'reportIndex'])->name('reports.index');
+Route::get('/reports', [LaporanController::class, 'reportView'])->name('reports.view');
+Route::put('/reports/update/{id}', [LaporanController::class, 'updateStatus'])->name('reports.update');
 
 
 // 4. Update status bansos (tandai sudah disalurkan)

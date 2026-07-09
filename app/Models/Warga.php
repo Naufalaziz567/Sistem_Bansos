@@ -1,12 +1,14 @@
-<?php 
+<?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Warga extends Model
 {
     use HasFactory;
-     protected $fillable = ['title','slug', 'author','body', 'category', 'published_at'];
+    
+    // Beritahu Laravel nama tabel yang benar
+    protected $table = 'warga'; 
 }
-?>

@@ -105,19 +105,18 @@ public function dashboard()
             'jumlah_tanggungan' => $request->jumlah_tanggungan,
         ]);
 
+        $periodeSekarang = date('F Y');
         // Insert otomatis ke tabel monitoring transaksi (bantuan_warga)
         DB::table('bantuan_warga')->insert([
             'nik' => $request->nik,
             'jenis_bansos' => $jenisBansos,
-            'periode' => 'Juni 2026',
+            'periode' => $periodeSekarang,
             'status_penyaluran' => 'Proses',
-            'tanggal_salur' => null
         ]);
 
         return redirect('/warga')->with('success', 'Data warga berhasil ditambahkan dan ketetapan bansos berhasil diproses!');
     }
 
-    // 4. Tampilkan Form Edit Warga
    // 4. Tampilkan Form Edit Warga
 public function edit($nik)
 {
@@ -192,24 +191,4 @@ public function edit($nik)
         ]);
     }
 
-    // 9. Tampilkan Halaman Laporan (Reports) Petugas Berbasis Agregat Statistik
-    public function reportIndex()
-    {
-        $totalPenerima = DB::table('bantuan_warga')->count();
-        $totalDisalurkan = DB::table('bantuan_warga')->where('status_penyaluran', 'Sudah Disalurkan')->count();
-        $totalProses = DB::table('bantuan_warga')->where('status_penyaluran', 'Proses')->count();
-
-        $laporanData = DB::table('bantuan_warga')
-            ->join('warga', 'bantuan_warga.nik', '=', 'warga.nik')
-            ->select('bantuan_warga.*', 'warga.nama_lengkap', 'warga.rt_rw')
-            ->get();
-
-        return view('reports', [
-            'title' => 'Laporan Realisasi & Penyaluran Bansos',
-            'totalPenerima' => $totalPenerima,
-            'totalDisalurkan' => $totalDisalurkan,
-            'totalProses' => $totalProses,
-            'laporan' => $laporanData
-        ]);
-    }
 }
