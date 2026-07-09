@@ -12,7 +12,7 @@
                 <span>Tambah Warga Baru</span>
             </a>
         </div>
-        
+
         <div class="relative">
             <input type="text" placeholder="Cari berdasarkan NIK atau Nama..." 
                 class="w-full pl-12 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-2xl text-white text-sm focus:ring-2 focus:ring-blue-500 outline-none transition">
@@ -55,24 +55,24 @@
                                     <div class="flex items-center justify-center gap-2">
                                         <a href="{{ route('warga.edit', $item->nik) }}" class="px-3 py-1.5 bg-gray-700 hover:bg-amber-600 text-white rounded-lg text-xs font-semibold transition">Edit</a>
                                         <form action="{{ route('warga.destroy', $item->nik) }}" method="POST" id="delete-form-{{ $item->nik }}">
-                                            @csrf @method('DELETE')
+                                            @csrf
                                             <button type="button" onclick="confirmDelete('{{ $item->nik }}', '{{ $item->nama_lengkap }}')" class="px-3 py-1.5 bg-red-900/30 hover:bg-red-600 text-red-400 hover:text-white rounded-lg text-xs font-semibold transition">Hapus</button>
                                         </form>
                                     </div>
                                 </td>
                             </tr>
                        @empty
-    <tr>
-        <td colspan="6" class="px-6 py-16 text-center">
-            <div class="flex flex-col items-center justify-center text-gray-500">
-                <svg class="w-12 h-12 mb-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <p class="font-medium text-lg">Data tidak ditemukan</p>
-                <p class="text-sm">Silakan periksa kembali kata kunci pencarian Anda.</p>
-                <a href="{{ route('warga.index') }}" class="mt-4 text-blue-400 hover:underline">Reset Pencarian</a>
-            </div>
-        </td>
-    </tr>
-@endforelse
+                        <tr>
+                            <td colspan="6" class="px-6 py-16 text-center">
+                                <div class="flex flex-col items-center justify-center text-gray-500">
+                                    <svg class="w-12 h-12 mb-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <p class="font-medium text-lg">Data tidak ditemukan</p>
+                                    <p class="text-sm">Silakan periksa kembali kata kunci pencarian Anda.</p>
+                                    <a href="{{ route('warga.index') }}" class="mt-4 text-blue-400 hover:underline">Reset Pencarian</a>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
                     </tbody>
                 </table>
             </div>
@@ -81,6 +81,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+
+        @if(session('success'))
+            Swal.fire({
+                title: 'Berhasil!',
+                text: "{{ session('success') }}",
+                icon: 'success',
+                background: '#1f2937',     /* Tema gelap menyesuaikan bg-gray-800 */
+                color: '#fff',
+                confirmButtonColor: '#2563eb', /* Warna Biru Tailwind (blue-600) */
+                confirmButtonText: 'Oke, Mantap!'
+            });
+        @endif
+
         function confirmDelete(nik, nama) {
             Swal.fire({
                 title: 'Hapus Data?',
@@ -97,26 +110,6 @@
             });
         }
 
-        // 2. Alert Pop-up Konfirmasi Interaktif Sebelum DATA DIHAPUS
-        function confirmDelete(nik, nama) {
-            Swal.fire({
-                title: 'Apakah kamu yakin?',
-                text: "Data warga bernama " + nama + " (NIK: " + nik + ") akan dihapus permanen dari sistem!",
-                icon: 'warning',
-                showCancelButton: true,
-                background: '#1f2937',
-                color: '#fff',
-                confirmButtonColor: '#dc2626', /* Merah (red-600) */
-                cancelButtonColor: '#4b5563',  /* Abu-abu (gray-600) */
-                confirmButtonText: 'Ya, Hapus!',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Eksekusi submit form jika user menekan tombol merah "Ya, Hapus!"
-                    document.getElementById('delete-form-' + nik).submit();
-                }
-            });
-        }
 
     </script>
 </x-layout>
