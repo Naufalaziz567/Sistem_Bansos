@@ -12,9 +12,7 @@ class LaporanBansos extends Model
     protected $table = 'bantuan_warga'; 
 
     protected $fillable = [
-        'nama_lengkap', 
         'nik', 
-        'rt_rw', 
         'jenis_bansos', 
         'periode', 
         'status_penyaluran'
